@@ -1,18 +1,12 @@
-import React from "react";
-import Home from "./routes/Home";
-import Reservations from "./routes/Reservations";
+import { render, screen } from '@testing-library/react';
+import App from './App';
 
-import {Route, Routes} from "react-router-dom";
+import { Reservations } from './components';
 
-function App() {
-  return (
-    <>
-      <Routes>
-        <Route path = "/" element = {<Home />}/>
-        <Route path = "/reservations" element = {<Reservations />}/>
-      </Routes>
-    </>
-  );
-}
+test('Checking Time Status Section', () => {
+  render( <Reservations />);
 
-export default App;
+  const statusHeadaing = screen.getByText("Evening");
+
+  expect(statusHeadaing).toBeInTheDocument();
+});
